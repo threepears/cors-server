@@ -25,12 +25,12 @@ app.get('/api/:artist/:sig', (req, res) => {
 
   console.log(url);
 
-  // request.get(url, (err, response, body) => {
-  //   if (err) throw err;
+  request.get(url, (err, response, body) => {
+    if (err) throw err;
 
-  //   res.header('Access-Control-Allow-Origin', '*');
-  //   res.send(JSON.parse(body));
-  // });
+    res.header('Access-Control-Allow-Origin', '*');
+    res.send(JSON.parse(body));
+  });
 });
 
 app.listen(PORT, () => {
