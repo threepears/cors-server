@@ -17,16 +17,11 @@ app.all('*', function(req, res, next) {
     next();
 });
 
-// API page with CORS header
+
+// Request artist information from Rovi API
 app.get('/api/:artist/:sig', (req, res) => {
   const artist = req.params.artist;
   const sig = req.params.sig;
-
-  console.log(artist);
-  console.log(sig);
-  console.log(rovi);
-  console.log(PORT);
-  console.log(process.env);
 
   const url = "http://api.rovicorp.com/search/v2.1/music/search?apikey=" + rovi + "&sig=" + sig + "&query=" + artist + "&entitytype=artist&size=1&include=images,musicbio,discography,videos&formatid=62&type=main";
 
@@ -39,6 +34,21 @@ app.get('/api/:artist/:sig', (req, res) => {
     res.send(JSON.parse(body));
   });
 });
+
+
+// Request artist's video information from Rovi API
+app.get('/api/:videolink', (req, res) => {
+  const videoUrl = req.params.videolink;
+
+  console.log(videoUrl);
+
+  request.get(videoUrl, (err, response, body) => {
+    if (err) throw err;
+
+    res.send(JSON.parse(body));
+  });
+});
+
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
