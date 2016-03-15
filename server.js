@@ -48,8 +48,8 @@ app.get('/videos/:artist', (req, res) => {
   request.get(url1, (err, response, body) => {
     if (err) throw err;
 
-    var artistId = body.response;
-    console.log(body.response);
+    // var artistId = body.response;
+    console.log(body.artists);
 
     const url2 = "http://developer.echonest.com/api/v4/artist/video?api_key=" + echo + "&id=" + artistId + "&format=json&results=3&start=0";
 
