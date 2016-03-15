@@ -43,7 +43,7 @@ app.get('/videos/:artist', (req, res) => {
 
   const url1 = "http://developer.echonest.com/api/v4/artist/search?api_key=" + echo + "&format=json&name=" + artist + "&results=1";
 
-  console.log(url);
+  console.log(url1);
 
   request.get(url, (err, response, body) => {
     if (err) throw err;
