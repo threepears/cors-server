@@ -37,12 +37,14 @@ app.get('/api/:artist/:sig', (req, res) => {
 
 
 // Request artist's video information from Rovi API
-app.get('/api/:videolink', (req, res) => {
-  const videoUrl = req.params.videolink;
+app.get('/api/:nameid', (req, res) => {
+  const nameId = req.params.nameid;
 
-  console.log(videoUrl);
+  const url = "http://api.rovicorp.com/data/v1.1/name/videos?format=json&apikey=" + rovi + "&nameid=" + nameId;
 
-  request.get(videoUrl, (err, response, body) => {
+  console.log(url);
+
+  request.get(url, (err, response, body) => {
     if (err) throw err;
 
     res.send(JSON.parse(body));
