@@ -10,6 +10,13 @@ const PORT = process.env.PORT || 3000;
 const rovi = process.env.ROVI_APIKEY || '';
 
 
+// CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
 // API page with CORS header
 app.get('/api/:artist/:sig', (req, res) => {
   const artist = req.params.artist;
@@ -28,7 +35,7 @@ app.get('/api/:artist/:sig', (req, res) => {
   request.get(url, (err, response, body) => {
     if (err) throw err;
 
-    res.header('Access-Control-Allow-Origin', '*');
+    // res.header('Access-Control-Allow-Origin', '*');
     res.send(JSON.parse(body));
   });
 });
