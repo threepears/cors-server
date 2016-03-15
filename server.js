@@ -45,7 +45,7 @@ app.get('/videos/:artist', (req, res) => {
 
   console.log(url1);
 
-  request.get(url, (err, response, body) => {
+  request.get(url1, (err, response, body) => {
     if (err) throw err;
 
     console.log(body);
