@@ -8,6 +8,7 @@ const request = require('request');
 
 const PORT = process.env.PORT || 3000;
 const rovi = process.env.ROVI_APIKEY || '';
+const echo = process.env.ECHONEST_APIKEY || '';
 
 
 // CORS (Cross-Origin Resource Sharing) headers to support Cross-site HTTP requests
@@ -37,19 +38,21 @@ app.get('/api/:artist/:sig', (req, res) => {
 
 
 // Request artist's video information from Rovi API
-app.get('/videos/:id/:appid/:idtype', (req, res) => {
-  const id = req.params.id;
-  const appid = req.params.appid;
-  const idtype = req.params.idtype;
+app.get('/videos/:artist', (req, res) => {
+  const artist = req.params.artist;
 
-  const url = "https://ee.internetvideoarchive.net/api/expressstandard/" + id + "?appid=" + appid + "&idtype=" + idtype
-
-  // const url = "http://api.rovicorp.com/data/v1.1/name/videos?format=json&apikey=" + rovi + "&sig=" + sig + "&nameid=" + nameId;
+  const url1 = "http://developer.echonest.com/api/v4/artist/search?api_key=" + echo + "&format=json&name=" + artist + "&results=1";
 
   console.log(url);
 
   request.get(url, (err, response, body) => {
     if (err) throw err;
+
+    console.log(body);
+
+    const url2 = "http://developer.echonest.com/api/v4/artist/video?api_key=" + echo + "&id=ARH6W4X1187B99274F&format=json&results=3&start=0";
+
+    console.log(url2);
 
     res.send(JSON.parse(body));
   });
