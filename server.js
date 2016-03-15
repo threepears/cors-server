@@ -35,19 +35,20 @@ app.get('/api/:artist/:sig', (req, res) => {
   });
 });
 
+http://api.rovicorp.com/data/v1.1/name/videos?format=json&apikey=utdr8pu2t7j6fprtfkuyb2ct&nameid=MN0000139026
 
 // Request artist's video information from Rovi API
-app.get('/videos/:nameid', (req, res) => {
+app.get('/videos/:nameid/:sig', (req, res) => {
   const nameId = req.params.nameid;
+  const sig = req.params.sig;
 
-  const url = "http://api.rovicorp.com/data/v1.1/name/videos?format=json&apikey=" + rovi + "&nameid=" + nameId;
+  const url = "http://api.rovicorp.com/data/v1.1/name/videos?format=json&apikey=" + rovi + "&sig=" + sig + "&nameid=" + nameId;
 
   console.log(url);
 
   request.get(url, (err, response, body) => {
     if (err) throw err;
 
-    res.header('Access-Control-Allow-Origin', '*');
     res.send(JSON.parse(body));
   });
 });
