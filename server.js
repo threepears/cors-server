@@ -48,13 +48,18 @@ app.get('/videos/:artist', (req, res) => {
   request.get(url1, (err, response, body) => {
     if (err) throw err;
 
-    console.log(body);
+    var artistId = body.response.artists[0].id;
+    console.log(body.response.artists[0].id);
 
-    const url2 = "http://developer.echonest.com/api/v4/artist/video?api_key=" + echo + "&id=ARH6W4X1187B99274F&format=json&results=3&start=0";
+    const url2 = "http://developer.echonest.com/api/v4/artist/video?api_key=" + echo + "&id=" + artistId + "&format=json&results=3&start=0";
 
     console.log(url2);
 
-    res.send(JSON.parse(body));
+    request.get(url2, (err, response, body) => {
+      if (err) throw err;
+
+      res.send(JSON.parse(body));
+    });
   });
 });
 
