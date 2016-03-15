@@ -38,11 +38,14 @@ app.get('/api/:artist/:sig', (req, res) => {
 http://api.rovicorp.com/data/v1.1/name/videos?format=json&apikey=utdr8pu2t7j6fprtfkuyb2ct&nameid=MN0000139026
 
 // Request artist's video information from Rovi API
-app.get('/videos/:nameid/:sig', (req, res) => {
-  const nameId = req.params.nameid;
-  const sig = req.params.sig;
+app.get('/videos/:id/:appid/:idtype', (req, res) => {
+  const id = req.params.id;
+  const appid = req.params.appid;
+  const idtype = req.params.idtype;
 
-  const url = "http://api.rovicorp.com/data/v1.1/name/videos?format=json&apikey=" + rovi + "&sig=" + sig + "&nameid=" + nameId;
+  const url = "https://ee.internetvideoarchive.net/api/expressstandard/" + id + "?appid=" + appid + "&idtype=" + idtype
+
+  // const url = "http://api.rovicorp.com/data/v1.1/name/videos?format=json&apikey=" + rovi + "&sig=" + sig + "&nameid=" + nameId;
 
   console.log(url);
 
