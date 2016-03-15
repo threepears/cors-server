@@ -50,17 +50,13 @@ app.get('/videos/:artist', (req, res) => {
 
     var bodyparse = JSON.parse(body);
     var artistId = bodyparse.response.artists[0].id;
-    console.log("Body parsed", bodyparse);
-    console.log("Body response", bodyparse.response);
-    console.log("artist id", artistId);
 
     const url2 = "http://developer.echonest.com/api/v4/artist/video?api_key=" + echo + "&id=" + artistId + "&format=json&results=3&start=0";
-
-    console.log(url2);
 
     request.get(url2, (err, response, body) => {
       if (err) throw err;
 
+      console.log(body);
       res.send(JSON.parse(body));
     });
   });
