@@ -35,7 +35,6 @@ app.get('/api/:artist/:sig', (req, res) => {
   });
 });
 
-http://api.rovicorp.com/data/v1.1/name/videos?format=json&apikey=utdr8pu2t7j6fprtfkuyb2ct&nameid=MN0000139026
 
 // Request artist's video information from Rovi API
 app.get('/videos/:id/:appid/:idtype', (req, res) => {
