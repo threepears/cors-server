@@ -47,7 +47,7 @@ app.get('/videos/:artist', (req, res) => {
 
     request.get(url2, (err, response, body) => {
       if (err) throw err;
-
+      res.removeHeader("X-Frame-Options");
       res.send(JSON.parse(body));
     });
   });
