@@ -15,6 +15,7 @@ const echo = process.env.ECHONEST_APIKEY || '';
 app.all('*', function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("X-Frame-Options", "SAMEORIGIN");
     next();
 });
 
@@ -43,11 +44,11 @@ app.get('/videos/:artist', (req, res) => {
 
     var bodyparse = JSON.parse(body);
     var artistId = bodyparse.response.artists[0].id;
-    const url2 = "http://developer.echonest.com/api/v4/artist/video?api_key=" + echo + "&id=" + artistId + "&format=json&results=3&start=0";
+    const url2 = "http://developer.echonest.com/api/v4/artist/video?api_key=" + echo + "&id=" + artistId + "&format=json&results=5&start=0";
 
     request.get(url2, (err, response, body) => {
       if (err) throw err;
-      res.removeHeader("X-Frame-Options");
+
       res.send(JSON.parse(body));
     });
   });
