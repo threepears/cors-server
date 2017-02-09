@@ -34,6 +34,20 @@ app.get('/api/:artist/:sig', (req, res) => {
 });
 
 
+// Request album information from Rovi API
+app.get('/api/:albumId/:sig', (req, res) => {
+  const albumId = req.params.albumId;
+  const sig = req.params.sig;
+  const url = "http://api.rovicorp.com/data/v1.1/album/images?apikey=" + rovi + "&sig=" + sig + "&albumid=" + albumId + "&imagesize=200-300x200-300";
+
+  request.get(url, (err, response, body) => {
+    if (err) throw err;
+
+    res.send(JSON.parse(body));
+  });
+});
+
+
 // Request artist's video information from Echonest API
 app.get('/videos/:artist', (req, res) => {
   const artist = req.params.artist;
