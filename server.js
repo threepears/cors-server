@@ -35,7 +35,7 @@ app.get('/api/:artist/:sig', (req, res) => {
 
 
 // Request album information from Rovi API
-app.get('/api/:albumId/:sig', (req, res) => {
+app.get('/album/:albumId/:sig', (req, res) => {
   const albumId = req.params.albumId;
   const sig = req.params.sig;
   const url = "http://api.rovicorp.com/data/v1.1/album/info?apikey=" + rovi + "&sig=" + sig + "&albumid=" + albumId + "&include=images,tracks&imagesize=200-300x200-300";
