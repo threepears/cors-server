@@ -38,7 +38,7 @@ app.get('/api/search/artist/:artist', (req, res) => {
   console.log("URL", url)
 
   request.get(url, options, (err, response, body) => {
-    console.log("BODY", body)
+    console.log("ARTIST BASIC INFO BODY", body)
     if (err) throw err;
 
     res.send(JSON.parse(body));
@@ -47,13 +47,12 @@ app.get('/api/search/artist/:artist', (req, res) => {
 
 // Request artist bio and photo from The Audio DB API
 app.get('/api/lookup/artist/:artistId', (req, res) => {
-  console.log("GETTING READY TO FETCH THAT SHIZZZ")
   const artistId = req.params.artistId;
   const url = urlBase + "lookup/artist/" + artistId
   console.log("FETCH INFO URL", url)
 
   request.get(url, options, (err, response, body) => {
-    console.log("BODY", body)
+    console.log("ARTIST FULL INFO BODY", body)
     if (err) throw err;
 
     res.send(JSON.parse(body));
