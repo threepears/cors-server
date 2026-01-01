@@ -8,7 +8,7 @@ const app = express();
 const request = require('request');
 
 const PORT = process.env.PORT || 3000;
-const API_KEY = process.env.AUDIO_DB_API_KEY || '';
+const API_KEY = process.env.AUDIO_DB_API_KEY || '045748';
 
 const urlBase = "https://www.theaudiodb.com/api/v2/json/"
 
@@ -75,6 +75,18 @@ app.get('/api/list/discography/:artistId', (req, res) => {
 app.get('/album/:albumId', (req, res) => {
   const albumId = req.params.albumId;
   const url = "https://www.theaudiodb.com/api/v2/json/search/artist/" + artist
+
+  request.get(url, (err, response, body) => {
+    if (err) throw err;
+
+    res.send(JSON.parse(body));
+  });
+});
+
+// Request artist video links from The Audio DB API
+app.get('/api/lookup/video/:artistId', (req, res) => {
+  const artistId = req.params.artistId;
+  const url = "https://www.theaudiodb.com/api/v1/json/123/mvid.php?i=" + artistId
 
   request.get(url, (err, response, body) => {
     if (err) throw err;
