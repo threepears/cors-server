@@ -20,8 +20,7 @@
   "homepage": "https://github.com/threepears/cors-server#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.13.4",
-    "request": "^2.69.0"
+    "express": "^5.2.1"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
